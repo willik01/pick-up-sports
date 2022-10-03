@@ -2,6 +2,13 @@ const mongoose = require('mongoose');
 // optional shortcut variable
 const Schema = mongoose.Schema;
 
+const reviewSchema = new Schema({
+  content: String,
+  rating: {type: String, min: 1, max: 5, default: 5}
+}, {
+  timestamps: true
+})
+
 const movieSchema = new Schema({
   title: String,
   releaseYear: {
@@ -16,7 +23,8 @@ const movieSchema = new Schema({
     enum: ['G', 'PG', 'PG-13', 'R']
   },
   cast: [String],
-  nowShowing: Boolean
+  nowShowing: { type: Boolean, default: false },
+  reviews: [reviewSchema]
 }, {
   timestamps: true
 });
