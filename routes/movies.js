@@ -1,10 +1,16 @@
-const express = require('express');
-const router = express.Router();
+var express = require('express');
+var router = express.Router();
 const moviesCtrl = require('../controllers/movies');
-	
-// All the routes already start with '/movies'
+
+// All routes "start with" /movies (from server.js)
+
+// GET /movies (index functionality)
+router.get('/', moviesCtrl.index);
+// GET /movies/new (new functionality)
 router.get('/new', moviesCtrl.new);
-router.post('/', moviesCtrl.create)
-router.get('/', moviesCtrl.index)
-	
+// GET /movies/:id (show functionality)
+router.get('/:id', moviesCtrl.show);
+// POST /movies (create functionality)
+router.post('/', moviesCtrl.create);
+
 module.exports = router;
