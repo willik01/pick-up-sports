@@ -1,4 +1,5 @@
 var Movie = require('../models/movie');
+const Performer = require('../models/performer')
 
 module.exports = {
   index,
@@ -14,8 +15,14 @@ function index(req, res) {
 }
 
 function show(req, res) {
-  Movie.findById(req.params.id, function(err, movie) {
-    res.render('movies/show', { title: 'Movie Detail', movie });
+  Movie.findById(req.params.id)
+    .populate('cast').exec(function(err, movie) {
+      Performer.find(
+        {_id: {$nin: movie.cast}},
+        function(err, performers) {
+          res.render('movies/show', { title: 'Movie Detail', movie, performers });
+        }
+      )
   });
 }
 
@@ -37,8 +44,7 @@ function create(req, res) {
   movie.save(function(err) {
     // one way to handle errors
     if (err) return res.redirect('/movies/new');
-    console.log(movie);
     // for now, redirect right back to new.ejs
-    res.redirect('/movies');
+    res.redirect(`/movies/${movie._id}`);
   });
 }
