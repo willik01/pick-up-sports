@@ -17,6 +17,7 @@ function index(req, res) {
 function show(req, res) {
   Movie.findById(req.params.id)
     .populate('cast').exec(function(err, movie) {
+      console.log(movie)
       Performer.find(
         {_id: {$nin: movie.cast}},
         function(err, performers) {
