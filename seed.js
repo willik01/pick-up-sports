@@ -1,3 +1,4 @@
+require('dotenv').config()
 require('./config/database')
 
 const Movie = require('./models/movie')
@@ -78,11 +79,11 @@ seedAsync()
 
 
 
-const p = new Promise(function(resolve, reject) {
-    reject('reject')
-})
+// const p = new Promise(function(resolve, reject) {
+//     reject('reject')
+// })
 
-console.log(p)
+// console.log(p)
 
 // p.then(function(result) {
 //     console.log(result)
