@@ -4,11 +4,13 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const session = require('express-session')
+const passport = require('passport')
 
 require('dotenv').config()
 
 // Connect to the MongoDB database
 require('./config/database');
+require('./config/passport')
 
 var indexRouter = require('./routes/index');
 var moviesRouter = require('./routes/movies');
@@ -30,6 +32,8 @@ app.use(session({
   resave: false,
   saveUninitialized: true
 }))
+app.use(passport.initialize())
+app.use(passport.session())
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
