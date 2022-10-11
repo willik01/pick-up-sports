@@ -6,6 +6,7 @@
   <div class="user"><img alt="avatar" src="<%= user.avatar %>" referrerpolicy="no-referrer" >&nbsp;<%= user.name %></div>
   <div>email: </div>
   <div><%= user.email %></div>
+  <% console.log('booger', req.user) %>
   <!-- TBD: BELOW HERE SHOULD NOT SHOW UNLESS SIGNED IN USER IS VERIFIED -->
   <form id="edit-profile-form" method="POST" action="/users/<%= user._id %>?_method=PUT">
       <div>Gender: </div>
@@ -19,7 +20,7 @@
       <% console.log('looking for profile data') %>
       <% if (user.games.length) { %>
         <% user.games.forEach(function(g) { %>
-          <div>Name:</div><div><%= g.userGames %></div>
+          <div>Name:</div><div><%= g.userGame %></div>
           <div>Skill Level:</div><div><%= g.skillLevel %></div>
           <div>Desired Play Location:</div><div><%= g.gameLocation %></div>
           <div>Years Experience:</div><div><%= g.yearsExperience %></div>
