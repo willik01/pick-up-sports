@@ -1,0 +1,39 @@
+<%- include('../partials/header') %>
+
+<!-- <section id="show-page"> -->
+  
+  <div>Profile:</div>
+  <div class="user"><img alt="avatar" src="<%= user.avatar %>" referrerpolicy="no-referrer" >&nbsp;<%= user.name %></div>
+  <div>email: </div>
+  <div><%= user.email %></div>
+  <!-- TBD: BELOW HERE SHOULD NOT SHOW UNLESS SIGNED IN USER IS VERIFIED -->
+  <form id="edit-profile-form" method="POST" action="/users/<%= user._id %>?_method=PUT">
+      <div>Gender: </div>
+      <input type="text" id="gender" name="gender" value="<%= user.gender %>">
+      <div>Location:</div>
+      <input type="text" id="location" name="location" value="<%= user.location %>">
+      <input type="submit" value="Save Profile">
+    </form>
+      <div>Games:</div>
+      <div></div>
+      <% console.log('looking for profile data') %>
+      <% if (user.games.length) { %>
+        <% user.games.forEach(function(g) { %>
+          <div>Name:</div><div><%= g.userGames %></div>
+          <div>Skill Level:</div><div><%= g.skillLevel %></div>
+          <div>Desired Play Location:</div><div><%= g.gameLocation %></div>
+          <div>Years Experience:</div><div><%= g.yearsExperience %></div>
+          <div>Competitiveness:</div><div><%= g.competitiveness %></div>    
+          <% }); %>
+      <% } else { %>
+        <div>this should show if there are no games for a user</div>
+        <div></div>
+        <% }; %>
+        <!-- add additional info for location, launage, country -->
+        <!-- <button type="submit">save profile </button> -->
+
+<!-- </section> -->
+
+
+
+<%- include('../partials/footer') %>

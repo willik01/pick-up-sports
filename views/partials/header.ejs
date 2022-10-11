@@ -15,6 +15,7 @@
       <a href="/performers/new"	<%- title === 'Add Performer' ? 'class="active"' : '' %>>
       ADD PERFORMER</a>
       <a href="/movies/new" <%- title === 'Add Movie' ? 'class="active"' : '' %>>ADD MOVIE</a>
+      <a href="/users/<%= user._id %>" <%- title === 'User Profile Detail' ? 'class="active"' : '' %>>USER PROFILE</a>
       <a href="/logout">LOG OUT</a>
     <% } else { %>
       <a href="/auth/google" class="login">LOG IN&nbsp;<img src="https://i.imgur.com/FHjYyi0.png"></a>
