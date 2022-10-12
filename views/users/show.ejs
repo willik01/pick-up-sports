@@ -6,7 +6,7 @@
   <div class="user"><img alt="avatar" src="<%= user.avatar %>" referrerpolicy="no-referrer" >&nbsp;<%= user.name %></div>
   <div>email: </div>
   <div><%= user.email %></div>
-  <% console.log('booger', req.user) %>
+
   <!-- TBD: BELOW HERE SHOULD NOT SHOW UNLESS SIGNED IN USER IS VERIFIED -->
   <form id="edit-profile-form" method="POST" action="/users/<%= user._id %>?_method=PUT">
       <div>Gender: </div>
@@ -17,19 +17,36 @@
     </form>
       <div>Games:</div>
       <div></div>
+
+
+
+<!-- Display user's games -->
+      
       <% console.log('looking for profile data') %>
       <% if (user.games.length) { %>
         <% user.games.forEach(function(g) { %>
-          <div>Name:</div><div><%= g.userGame %></div>
+          <div>Game:</div><div><%= g.userGame %></div>
+          <!--  <div>Preferred Oponnent Gender:</div></div><%# user.gender %></div>  -->
           <div>Skill Level:</div><div><%= g.skillLevel %></div>
           <div>Desired Play Location:</div><div><%= g.gameLocation %></div>
           <div>Years Experience:</div><div><%= g.yearsExperience %></div>
           <div>Competitiveness:</div><div><%= g.competitiveness %></div>    
           <% }); %>
       <% } else { %>
-        <div>this should show if there are no games for a user</div>
+        <!-- Nothing at this time -->
+        <% console.log('no games data yet?') %>
         <div></div>
         <% }; %>
+
+<!-- add user's games -->
+      <form action="/users/<%= user._id %>/games" method="POST">  
+          <div>Preferred Opponent Gender:</div><input type="text" id="gender" name="gender">
+          <div>Skill Level:</div><input type="text" id="skillLevel" name="skillLevel">
+          <div>Desired Play Location:</div><input type="text" id="gameLocation" name="gameLocation">
+          <div>Years Experience:</div><input type="text" id="yearsExperience" name="yearsExperience">
+          <div>Competitiveness:</div><input type="text" id="competitiveness" name="competitiveness">
+          <input type="submit" value="Save Game Profile">
+      </form>
         <!-- add additional info for location, launage, country -->
         <!-- <button type="submit">save profile </button> -->
 
