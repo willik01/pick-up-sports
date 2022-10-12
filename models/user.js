@@ -4,7 +4,7 @@ const Schema = mongoose.Schema
 const gamesSchema = new Schema({
     userGame: {
         type: String, 
-        enum: ['Tennis'], 
+        enum: ['Tennis', 'Pickleball', 'Badminton'], 
         default: 'Tennis',
     },
     skillLevel: {

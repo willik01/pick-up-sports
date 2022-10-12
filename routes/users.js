@@ -9,6 +9,6 @@ const isLoggedIn = require('../config/auth')
 router.get('/:id', usersCtrl.show);
 router.put('/:id', isLoggedIn, usersCtrl.update);
 router.post('/:id/games', isLoggedIn, usersCtrl.addGame);
-
+router.delete('/:id', isLoggedIn, usersCtrl.delete);
 
 module.exports = router;

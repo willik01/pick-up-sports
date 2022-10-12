@@ -4,6 +4,7 @@ module.exports = {
   show,
   update,
   addGame,
+  delete: deleteUserGame,
 };
 
 function show(req, res) {
@@ -37,6 +38,24 @@ function show(req, res) {
         res.redirect(`/users/${user._id}`);
       });
     });
+  }
+
+  function deleteUserGame(req, res) {
+    console.log('delete function, req.params.id: ', req.params.id)
+    User.findOne(
+      // {'games._id': req.params.id, 'comments.userId': req.user._id},
+      {'games._id': req.params.id},
+      function(err, user) {
+        if (!user || err) return res.redirect(`/users/${user._id}`);
+        // Remove the subdoc (https://mongoosejs.com/docs/subdocs.html)
+        user.games.remove(req.params.id);
+        // Save the updated book
+        user.save(function(err) {
+          // Redirect back to the book's show view
+          res.redirect(`/users/${user._id}`);
+        });
+      }
+    );
   }
  
 // // working updateOne  

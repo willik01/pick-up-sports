@@ -1,56 +1,105 @@
 <%- include('../partials/header') %>
-
-<!-- <section id="show-page"> -->
   
-  <div>Profile:</div>
-  <div class="user"><img alt="avatar" src="<%= user.avatar %>" referrerpolicy="no-referrer" >&nbsp;<%= user.name %></div>
-  <div>email: </div>
-  <div><%= user.email %></div>
-
+<table class="styled-table">
+  <thead>
+    <tr>
+      <th colspan="2">Profile:</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="avitar"><img alt="avatar" src="<%= user.avatar %>" referrerpolicy="no-referrer" ></td>
+      <td><%= user.name %></td>
+    </tr>
+    <tr>
+      <td>email: </td>
+      <td><%= user.email %></td>
+    </tr>
   <!-- TBD: BELOW HERE SHOULD NOT SHOW UNLESS SIGNED IN USER IS VERIFIED -->
   <form id="edit-profile-form" method="POST" action="/users/<%= user._id %>?_method=PUT">
-      <div>Gender: </div>
-      <input type="text" id="gender" name="gender" value="<%= user.gender %>">
-      <div>Location:</div>
-      <input type="text" id="location" name="location" value="<%= user.location %>">
-      <input type="submit" value="Save Profile">
-    </form>
-      <div>Games:</div>
-      <div></div>
+    <tr>
+      <td>Gender: </td>
+      <td><input type="text" id="gender" name="gender" value="<%= user.gender %>"></td>
+    </tr>
+    <tr>
+      <td>Location:</td>
+      <td><input type="text" id="location" name="location" value="<%= user.location %>"></td>
 
-
+    </tr>
+    <tr>
+      <td colspan="2">
+        <input type="submit" value="Save Profile">
+      </td>
+    </tr>
+  </form>
+  </tbody>
 
 <!-- Display user's games -->
-      
-      <% console.log('looking for profile data') %>
+<table class="styled-table">
+  <thead>
+    <tr>
+      <th colspan="3"><%= user.name %> Games/Sports</th>
+    </tr>
+  </thead>
+  <tbody>
       <% if (user.games.length) { %>
         <% user.games.forEach(function(g) { %>
-          <div>Game:</div><div><%= g.userGame %></div>
-          <!--  <div>Preferred Oponnent Gender:</div></div><%# user.gender %></div>  -->
-          <div>Skill Level:</div><div><%= g.skillLevel %></div>
-          <div>Desired Play Location:</div><div><%= g.gameLocation %></div>
-          <div>Years Experience:</div><div><%= g.yearsExperience %></div>
-          <div>Competitiveness:</div><div><%= g.competitiveness %></div>    
+          <tr>
+            <th colspan="2">Game: <%= g.userGame %></th>
+              <td rowspan="5"><% if (user) { %>
+              <form action="/users/<%= g._id %>?_method=DELETE" method="POST">
+                <button type="submit">Delete</button>
+              </form>
+              <!-- <input type="submit" value="edit"></td> -->
+              <% } %>
+          </tr><tr>
+            <!--  <div>Preferred Oponnent Gender:</div></div><%# user.gender %></div>  -->
+            <td>Skill Level:</td><td><%= g.skillLevel %></td>
+          </tr><tr>
+            <td>Desired Play Location:</td><td><%= g.gameLocation %></td>
+          </tr><tr>
+            <td>Years Experience:</td><td><%= g.yearsExperience %></td>
+          </tr><tr>
+            <td>Competitiveness:</td><td><%= g.competitiveness %></td>      
+          </tr>
+  </tbody>
           <% }); %>
-      <% } else { %>
-        <!-- Nothing at this time -->
-        <% console.log('no games data yet?') %>
-        <div></div>
-        <% }; %>
+      <% } %> 
 
-<!-- add user's games -->
-      <form action="/users/<%= user._id %>/games" method="POST">  
-          <div>Preferred Opponent Gender:</div><input type="text" id="gender" name="gender">
-          <div>Skill Level:</div><input type="text" id="skillLevel" name="skillLevel">
-          <div>Desired Play Location:</div><input type="text" id="gameLocation" name="gameLocation">
-          <div>Years Experience:</div><input type="text" id="yearsExperience" name="yearsExperience">
-          <div>Competitiveness:</div><input type="text" id="competitiveness" name="competitiveness">
-          <input type="submit" value="Save Game Profile">
-      </form>
-        <!-- add additional info for location, launage, country -->
-        <!-- <button type="submit">save profile </button> -->
+<!-- add user's new game -->
 
-<!-- </section> -->
+<table class="styled-table">
+  <thead>
+    <tr>
+      <th colspan="2">Add New Game</th>
+    </tr>
+  </thead>
+  <tbody> 
+        <form action="/users/<%= user._id %>/games" method="POST">  
+            <!-- <tr>
+              <td>Preferred Opponent Gender:</td><td><input type="text" id="gender" name="gender"></td>
+            </tr> -->
+            <tr>
+              <td>Skill Level:</td><td><input type="text" id="skillLevel" name="skillLevel"></td>
+            </tr>
+            <tr>
+              <td>Desired Play Location:</td><td><input type="text" id="gameLocation" name="gameLocation"></td>
+            </tr>
+            <tr>
+              <td>Years Experience:</td><td><input type="text" id="yearsExperience" name="yearsExperience"></td>
+            </tr>
+            <tr>
+              <td>Competitiveness:</td><td><input type="text" id="competitiveness" name="competitiveness"></td>
+            </tr>
+            <td colspan="2">
+              <input type="submit" value="Add New Game Profile">
+            </td>
+
+        </form>
+          <!-- add additional info for location, launage, country -->
+          <!-- <button type="submit">save profile </button> -->
+    </tbody>
+
 
 
 
