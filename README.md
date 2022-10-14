@@ -28,11 +28,12 @@ The home page lists active pick-up proposals. Users can select an existing propo
 #### Pick-Up Sports
 Code
 > https://github.com/willik01/pick-up-sports
+
 Live
 > https://pick-up-sports.onrender.com/
 
 
-## Next Steps (Icebox Features):
+## Next Steps (Backlog Features):
 
 1. add detail view for outstanding pick-ups
 1. ability to accept pick-ups, delete pick-ups, remove yourself from a pick-up
