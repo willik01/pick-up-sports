@@ -1,0 +1,66 @@
+<%- include('../partials/header') %>
+
+
+<!-- pull acceptable enum values from Mongoose schema -->
+
+  
+<table class="styled-table">
+<tbody>
+<% if(user) { %>
+<form id="new-form" action="/pickups" method="POST">
+  <tr>
+    <td><label>Total Players Requested</label></td>
+    <td><input type="text" name="playersRequested"></td>
+  </tr>
+  <tr>
+    <td>Sport</td>
+    <td><select name="userGame">
+          <option value="Tennis">Tennis</option>
+          <option value="Pickleball">Pickleball</option>
+          <option value="Badminton">Badminton</option>
+    </select></td>
+  </tr>
+  <tr>
+    <td>Skill Level</td>
+    <td><select name="skillLevel" id="skillLevel">
+        <option value="2.0">2.0</option>
+        <option value="2.5">2.5</option>
+        <option value="3.0">3.0</option>
+        <option value="3.5">3.5</option> 
+    </select></td>
+  </tr>
+  <tr>
+    <td>Desired Play Location</td><td><input type="text" name="gameLocation"></td>
+  </tr>
+  <tr>
+    <td>Years Experience</td><td><input type="number" name="yearsExperience"></td>
+  </tr>
+  <tr>
+    <td>Competitiveness</td><td><input type="number" min="1" max="10"  name="competitiveness"></td>
+  </tr>
+  <tr>
+    <td>Date for Pick-Up</td><td><input type="date" name="dateTimeRequested"></td>
+  </tr>
+  <tr>
+    <td>Duration</td>  
+    <td><select name="durationRequested">
+      <option value="30">Half Hour</option>
+      <option value="60">Full Hour</option>
+      <option value="90">1.5 Hours</option>
+      <option value="120">2 Hours</option>
+      </select></td>
+
+  </tr>
+  <!-- <tr>
+    <td>Gender Preference</td><td><input type="string" name="genderToPlayRequested"></td>
+  </tr> -->
+  <tr>  
+    <td colspan="2">
+      <input type="submit" value="Propose Pick-Up">
+    </td>
+  </tr>
+  </form>
+</tbody>
+<% } %>
+
+<%- include('../partials/footer') %>

@@ -9,12 +9,12 @@
 </head>
 <body>
   <nav>
-    <img src="/images/camera.svg">
-    <a href="/movies" <%- title === 'All Movies' ? 'class="active"' : '' %>>Main Index</a>
+    <img src="/images/tennis-ball.png">
+    <a href="/pickups" <%- title === 'View Pick-Ups' ? 'class="active"' : '' %>>VIEW OPEN PICK-UPS</a>
     <% if (user) { %>
-      <a href="/performers/new"	<%- title === 'Add Performer' ? 'class="active"' : '' %>>
-      ADD PERFORMER</a>
-      <a href="/movies/new" <%- title === 'Add Movie' ? 'class="active"' : '' %>>ADD MOVIE</a>
+      <!-- <a href="/performers/new"	<%- title === 'Add Performer' ? 'class="active"' : '' %>>
+      ADD PERFORMER</a> -->
+      <a href="/pickups/new" <%- title === 'Create New Pick-Up' ? 'class="active"' : '' %>>ADD NEW PICK-UP</a>
       <a href="/users/<%= user._id %>" <%- title === 'User Profile Detail' ? 'class="active"' : '' %>>USER PROFILE</a>
       <a href="/logout">LOG OUT</a>
     <% } else { %>

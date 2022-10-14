@@ -1,0 +1,20 @@
+<%- include('../partials/header') %>
+
+<section id="show-page">
+  <div>Title: </div>
+  <div><%= pickup.title %></div>
+  <div>Release Year: </div>
+  <div><%= pickup.releaseYear %></div>
+  <div>Rating: </div>
+  <div><%= pickup.mpaaRating %></div>
+  <div>Now Showing: </div>
+  <div><%= pickup.nowShowing ? 'Yes' : 'Nope' %></div>
+  <div>Cast:</div>
+  <ul>
+    <%- pickup.cast.map(p => `<li>${p.name} <small>${p.born.toLocaleDateString()}</small></li>`).join('') %>
+  </ul>
+</section>
+
+
+
+<%- include('../partials/footer') %>

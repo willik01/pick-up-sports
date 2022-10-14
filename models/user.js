@@ -16,7 +16,6 @@ const gamesSchema = new Schema({
         type: Number, min: 1, max: 10}, 
     gameLocation: {  //lat, long? Ultimately need to have an array of specific courts or game locations
         type: String, 
-        default: 'Seattle'
     }
 }, {
     timestamp: true

@@ -14,12 +14,11 @@ require('./config/database');
 require('./config/passport');
 
 const indexRouter = require('./routes/index');
-
 const usersRouter = require('./routes/users');
-
-const moviesRouter = require('./routes/movies');
-const reviewsRouter = require('./routes/reviews');
-const performersRouter = require('./routes/performers');
+const pickupsRouter = require('./routes/pickups');
+// const moviesRouter = require('./routes/movies');
+// const reviewsRouter = require('./routes/reviews');
+// const performersRouter = require('./routes/performers');
 
 const app = express();
 
@@ -47,15 +46,16 @@ app.use(function (req, res, next) {
 });
 
 app.use('/', indexRouter);
-app.use('/movies', moviesRouter);
+app.use('/pickups', pickupsRouter);
+// app.use('/movies', moviesRouter);
 
 
 app.use('/users', usersRouter);
 
 // Cannot use /reviews as a starts with path because many of the 
 // proper routes start with /movies
-app.use('/', reviewsRouter);
-app.use('/', performersRouter);
+// app.use('/', reviewsRouter);
+// app.use('/', performersRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
