@@ -1,9 +1,8 @@
-
-   
-* {
+ * {
   box-sizing: border-box;
   font-family: Helvetica;
-  color: #424748;  
+  /* color: #424748;   */
+  color: black;  
 }
 
 body {
@@ -18,11 +17,13 @@ body {
 
 body > nav {
   grid-area: nav;
-  background-color: #B8C0C2;
+  /* background-color: #B8C0C2; */
+  background-color: #3c638e;
   display: flex;
   justify-content: flex-end;
   align-items: center;
   padding: 0 20px 0 30px;
+  border-bottom: thick solid white;
 }
 
 nav > img {
@@ -42,9 +43,9 @@ body > main {
   overflow-y: scroll;
 }
 
-body > main h1:first-child {
+/* body > main h1:first-child {
   margin-bottom: 50px;
-}
+} */
 
 nav > a {
   margin: 20px;
@@ -62,24 +63,6 @@ nav > a.active {
   color: white;
   cursor: default;
 }
-
-/* #new-form {
-  display: grid;
-  grid-gap: 10px;
-  grid-template-columns: repeat(2, minmax(auto, 22rem));
-}
-
-#new-form *, #add-review-form * {
-  font-size: 20px;
-  padding: 5px;
-  border-radius: 5px;
-}
-
-#new-form input[type="submit"] {
-  grid-column: span 2;
-  width: 10rem;
-  margin-left: auto;
-} */
 
 table {
   font-size: 20px;
@@ -104,7 +87,6 @@ table thead th {
   font-weight: bold;
 }
 
-
 ul {
   margin: 0 0 1rem;
   padding: 0;
@@ -126,25 +108,19 @@ li {
   height: 30px;
 }
 
-/* .user {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-} */
-
-.avitar img {
+.user-block img {
   border-radius: 50%;
   height: 100px;
 }
 
-.avitar  {
+.user-block  {
   text-align: center;
   font-size: 2em;
 }
 
 .styled-table {
   border-collapse: collapse;
-  margin: 25px 0;
+  margin: 10px 0;
   font-size: 0.9em;
   font-family: sans-serif;
   min-width: 400px;
@@ -162,7 +138,7 @@ li {
 
 .styled-table th,
 .styled-table td {
-    padding: 12px 15px;
+    padding: 12px 8px;
 }
 
 .styled-table tbody tr {

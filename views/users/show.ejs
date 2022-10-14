@@ -2,9 +2,9 @@
   
 <table class="styled-table">
   <thead>
-    <tr>
-      <th colspan="2" class="avitar"><img alt="avatar" src="<%= user.avatar %>" referrerpolicy="no-referrer" ><%= user.name %></th>
-      
+    <tr class="user-block">
+      <!-- <th colspan="2" class="avitar"><img alt="avatar" src="<%= user.avatar %>" referrerpolicy="no-referrer" ><%= user.name %></th> -->
+      <th><img alt="avatar" src="<%= user.avatar %>" referrerpolicy="no-referrer" ></th><th><%= user.name %></th>
     </tr>
   </thead>
   <tbody>
@@ -42,7 +42,7 @@
       <% if (user.games.length) { %>
         <% user.games.forEach(function(g) { %>
           <tr>
-            <th colspan="2">Game: <%= g.userGame %></th>
+            <th colspan="2"><%= g.userGame %></th>
               <td rowspan="5"><% if (user) { %>
               <form action="/users/<%= g._id %>?_method=DELETE" method="POST">
                 <button type="submit">Delete</button>
@@ -51,13 +51,13 @@
               <% } %>
           </tr><tr>
             <!--  <div>Preferred Oponnent Gender:</div></div><%# user.gender %></div>  -->
-            <td>Skill Level:</td><td><%= g.skillLevel %></td>
+            <td>Skill Level</td><td><%= g.skillLevel %></td>
           </tr><tr>
-            <td>Desired Play Location:</td><td><%= g.gameLocation %></td>
+            <td>Desired Play Location</td><td><%= g.gameLocation %></td>
           </tr><tr>
-            <td>Years Experience:</td><td><%= g.yearsExperience %></td>
+            <td>Years Experience</td><td><%= g.yearsExperience %></td>
           </tr><tr>
-            <td>Competitiveness:</td><td><%= g.competitiveness %></td>      
+            <td>Competitiveness</td><td><%= g.competitiveness %></td>      
           </tr>
   </tbody>
           <% }); %>

@@ -9,8 +9,9 @@ module.exports = {
 };
 
 function index(req, res) {
-    console.log("in the Pickup Index Function!")
+  console.log("in the Pickup Index Function!")
   Pickup.find({}, function(err, pickups) {
+    console.log(pickups)
     res.render('pickups/index', { title: 'View Pick-Ups', pickups });
   });
   
