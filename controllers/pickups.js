@@ -1,3 +1,4 @@
+const pickup = require('../models/pickup');
 const Pickup = require('../models/pickup');
 // const Performer = require('../models/performer')
 
@@ -19,16 +20,10 @@ function index(req, res) {
 
 function show(req, res) {
     console.log("in the Pickup SHOW Function!")
-//   Movie.findById(req.params.id)
-//     .populate('cast').exec(function(err, movie) {
-//       // console.log(movie)
-//       Performer.find(
-//         {_id: {$nin: movie.cast}},
-//         function(err, performers) {
-//           res.render('movies/show', { title: 'Movie Detail', movie, performers });
-//         }
-//       )
-//   });
+  Pickup.findById(req.params.id, function(err, pickup) {
+    console.log('should be the pickup:', pickup)
+    res.render('pickups/show', { title: 'Pickup Detail', pickup });
+  });
 }
 
 function newPickup(req, res) {

@@ -1,19 +1,40 @@
 <%- include('../partials/header') %>
 
-<section id="show-page">
-  <div>Title: </div>
-  <div><%= pickup.title %></div>
-  <div>Release Year: </div>
-  <div><%= pickup.releaseYear %></div>
-  <div>Rating: </div>
-  <div><%= pickup.mpaaRating %></div>
-  <div>Now Showing: </div>
-  <div><%= pickup.nowShowing ? 'Yes' : 'Nope' %></div>
-  <div>Cast:</div>
-  <ul>
-    <%- pickup.cast.map(p => `<li>${p.name} <small>${p.born.toLocaleDateString()}</small></li>`).join('') %>
-  </ul>
-</section>
+<% console.log('pickup to show:'), pickup %>
+<% %>
+<table class="styled-table">
+  <thead>
+    <tr>
+      <th>Players<br> Needed</th>
+      <th>Sport</th>
+      <th>Skill<br> Level</th>
+      <th>Location</th>
+      <th>Date</th>
+      <th>Duration</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+        <td><%= pickup.playersRequested %></td>
+        <% pickup.gameRequested.forEach(function(detail) { %>
+          <td><%= detail.userGame %></td>
+          <td><%= detail.skillLevel %></td>
+          <td><%= detail.gameLocation %></td>
+        <% }); %>  
+        <td><%= pickup.dateTimeRequested.toLocaleDateString() %><br><%= pickup.dateTimeRequested.toLocaleTimeString() %></td>
+        <td><%= pickup.durationRequested %></td>
+    </tr>
+      <tr>
+        <td><%= pickup.playersRequested %></td>
+        <td>...Sport...</td>
+        <td>..skill level..</td>
+        <td>...location...</td>
+        <td><%= pickup.dateTimeRequested.toLocaleDateString() %><br><%= pickup.dateTimeRequested.toLocaleTimeString() %></td>
+        <td><%= pickup.durationRequested %></td>
+      </tr>
+    
+    </tbody>
+</table>
 
 
 
