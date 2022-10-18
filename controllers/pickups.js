@@ -1,4 +1,4 @@
-const pickup = require('../models/pickup');
+const User = require('../models/user');
 const Pickup = require('../models/pickup');
 // const Performer = require('../models/performer')
 
@@ -10,27 +10,28 @@ module.exports = {
 };
 
 function index(req, res) {
-  console.log("in the Pickup Index Function!")
   Pickup.find({}, function(err, pickups) {
-    console.log(pickups)
     res.render('pickups/index', { title: 'View Pick-Ups', pickups });
   });
   
 }
 
 function show(req, res) {
-    console.log("in the Pickup SHOW Function!")
   Pickup.findById(req.params.id, function(err, pickup) {
-    console.log('should be the pickup:', pickup)
-    res.render('pickups/show', { title: 'Pickup Detail', pickup });
+//Trying to figure out how to show pickup's owner. Got the data below. How to pass to view for rendering? 
+    //  console.log ('creator userobject', pickup.creatorUser._id) 
+     User.findById(pickup.creatorUser._id, function(err, puser){
+      // console.log ('creator userobject', user)
+      res.render('pickups/show', { title: 'Pickup Detail', pickup, puser });
+     }) 
+  
   });
 }
 
 function newPickup(req, res) {
     // const pickupGameEnums = Pickup.schema.path('gameRequested').schema.path('userGame').enumValues;
     // const pickupSkillLevelEnums = Pickup.schema.path('gameRequested').schema.path('skillLevel').enumValues;
-    // console.log('enumS in ejs: ', pickupGameEnums, pickupSkillLevelEnums); 
-    console.log("in the Pickup newPickup Function!")
+    // console.log('enumS in ejs: ', pickupGameEnums, pickupSkillLevelEnums);
   
   res.render('pickups/new', { title: 'Create New Pick-Up' });
   // res.render('pickups/new', { data: {title: 'Create New Pick-Up', pickupSkillLevelEnums: pickupSkillLevelEnums, pickupGameEnums: pickupGameEnums} });
@@ -45,7 +46,7 @@ function create(req, res) {
     // one way to handle errors
     console.log('error: ', err)
     if (err) return res.redirect('/pickups/new');
-    // for now, redirect right back to new.ejs
     res.redirect(`/pickups`);
+    // for now, redirect right back to new.ejs
   });
 }

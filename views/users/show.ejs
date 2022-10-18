@@ -1,26 +1,29 @@
 <%- include('../partials/header') %>
-  
+
 <table class="styled-table">
   <thead>
     <tr class="user-block">
-      <!-- <th colspan="2" class="avitar"><img alt="avatar" src="<%= user.avatar %>" referrerpolicy="no-referrer" ><%= user.name %></th> -->
-      <th><img alt="avatar" src="<%= user.avatar %>" referrerpolicy="no-referrer" ></th><th><%= user.name %></th>
+      
+      <th><img alt="avatar" src="<%= puser.avatar %>" referrerpolicy="no-referrer" ></th><th><%= puser.name %></th>
     </tr>
   </thead>
   <tbody>
+    <!-- Only show if you're the logged in user -->
+    <% if (user._id.equals(puser._id)) { %>
+
     <tr>
       <td>email: </td>
-      <td><%= user.email %></td>
+      <td><%= puser.email %></td>
     </tr>
-  <!-- Backlog: BELOW HERE SHOULD NOT SHOW UNLESS SIGNED IN USER IS VERIFIED -->
-  <form id="edit-profile-form" method="POST" action="/users/<%= user._id %>?_method=PUT">
+  
+  <form id="edit-profile-form" method="POST" action="/users/<%= puser._id %>?_method=PUT">
     <tr>
       <td>Gender: </td>
-      <td><input type="text" id="gender" name="gender" value="<%= user.gender %>"></td>
+      <td><input type="text" id="gender" name="gender" value="<%= puser.gender %>"></td>
     </tr>
     <tr>
       <td>Location:</td>
-      <td><input type="text" id="location" name="location" value="<%= user.location %>"></td>
+      <td><input type="text" id="location" name="location" value="<%= puser.location %>"></td>
 
     </tr>
     <tr>
@@ -31,7 +34,7 @@
   </form>
   </tbody>
 
-<!-- Display user's games -->
+  <!-- Display user's games -->
 <table class="styled-table">
   <thead>
     <tr>
@@ -39,8 +42,8 @@
     </tr>
   </thead>
   <tbody>
-      <% if (user.games.length) { %>
-        <% user.games.forEach(function(g) { %>
+      <% if (puser.games.length) { %>
+        <% puser.games.forEach(function(g) { %>
           <tr>
             <th colspan="2"><%= g.userGame %></th>
               <td rowspan="5"><% if (user) { %>
@@ -62,14 +65,51 @@
   </tbody>
           <% }); %>
       <% } %> 
+<% } else { %>
+    <tr>
+      <td>Gender: </td>
+      <td><%= puser.gender %></td>
+    </tr>
+    <tr>
+      <td>Location:</td>
+      <td><%= puser.location %></td>
+    </tr>
+    <!-- Display user's games -->
+<table class="styled-table">
+  <thead>
+    <tr>
+      <th colspan="3">Sports</th>
+    </tr>
+  </thead>
+  <tbody>
+      <% if (puser.games.length) { %>
+        <% puser.games.forEach(function(g) { %>
+          <tr>
+            <th colspan="2"><%= g.userGame %></th>
+          </tr><tr>
+            <!--  <div>Preferred Oponnent Gender:</div></div><%# user.gender %></div>  -->
+            <td>Skill Level</td><td><%= g.skillLevel %></td>
+          </tr><tr>
+            <td>Desired Play Location</td><td><%= g.gameLocation %></td>
+          </tr><tr>
+            <td>Years Experience</td><td><%= g.yearsExperience %></td>
+          </tr><tr>
+            <td>Competitiveness</td><td><%= g.competitiveness %></td>      
+          </tr>
+  </tbody>
+          <% }); %>
+      <% } %> 
+<%  } %>
+
+
 
 <!-- add user's new game -->
 <!-- pull acceptable enum values from Mongoose schema -->
+<% if (user._id.equals(puser._id)) { %>
 <% 
-const userGameEnums = user.schema.path('games').schema.path('userGame').enumValues;
-const skillLevelEnums = user.schema.path('games').schema.path('skillLevel').enumValues;
+const userGameEnums = puser.schema.path('games').schema.path('userGame').enumValues;
+const skillLevelEnums = puser.schema.path('games').schema.path('skillLevel').enumValues;
  %>
-
 <table class="styled-table">
   <thead>
     <tr>
@@ -77,7 +117,7 @@ const skillLevelEnums = user.schema.path('games').schema.path('skillLevel').enum
     </tr>
   </thead>
   <tbody> 
-        <form action="/users/<%= user._id %>/games" method="POST">  
+        <form action="/users/<%= puser._id %>/games" method="POST">  
             <tr>
               <td>Sport</td>
               <td><select name="userGame" id="userGame">
@@ -111,6 +151,7 @@ const skillLevelEnums = user.schema.path('games').schema.path('skillLevel').enum
         </form>
           <!-- add additional info for location, launage, country -->
           <!-- <button type="submit">save profile </button> -->
+          <%  } %>
     </tbody>
 
 

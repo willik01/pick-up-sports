@@ -22,7 +22,6 @@ Starting with Tennis, Pickleball and Badminton, this pick-up sports app allows u
 The home page lists active pick-up proposals. Users can select an existing proposal or create one of their own. Build your Pick-Up profile and provide info on the sports you want to play. 
 
 ## Notes
-1. 'Details' from the home page do not work yet. 
 1. It is not yet possible to accept a pick-up request. 
 
 #### Pick-Up Sports

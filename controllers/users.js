@@ -8,8 +8,10 @@ module.exports = {
 };
 
 function show(req, res) {
-    User.findById(req.params.id, function(err, user){ 
-      res.render('users/show', { title: 'User Profile Detail', user, req}) 
+    User.findById(req.params.id, function(err, puser){ 
+      console.log ('*req.params', req.params);
+      // res.render('users/show', { title: 'User Profile Detail', req}) 
+      res.render('users/show', { title: 'User Profile Detail', puser, req}) 
         
     }) 
   };
@@ -31,7 +33,6 @@ function show(req, res) {
       req.body.userId = req.user._id;
       req.body.userName = req.user.name;
       // Add the new userGame
-      console.log('req.user: ', req.user, 'req.body', req.body)
       user.games.push(req.body);
       user.save(function(err) {
         console.log('error: ', err)
@@ -41,7 +42,6 @@ function show(req, res) {
   }
 
   function deleteUserGame(req, res) {
-    console.log('delete function, req.params.id: ', req.params.id)
     User.findOne(
       // {'games._id': req.params.id, 'comments.userId': req.user._id},
       {'games._id': req.params.id},
@@ -49,9 +49,9 @@ function show(req, res) {
         if (!user || err) return res.redirect(`/users/${user._id}`);
         // Remove the subdoc (https://mongoosejs.com/docs/subdocs.html)
         user.games.remove(req.params.id);
-        // Save the updated book
+        // Save the updated user record
         user.save(function(err) {
-          // Redirect back to the book's show view
+          // Redirect back to the users's show view
           res.redirect(`/users/${user._id}`);
         });
       }

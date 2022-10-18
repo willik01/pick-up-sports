@@ -1,10 +1,12 @@
 <%- include('../partials/header') %>
 
-<% console.log('pickup to show:'), pickup %>
-<% %>
+<!-- <%# console.log('**pickup to show:', pickup) %>
+<%# console.log('**user to show:', user) %>
+<%# console.log('user ', user.name, 'puser ', puser) %> -->
 <table class="styled-table">
   <thead>
     <tr>
+      <th>Owner</th>
       <th>Players<br> Needed</th>
       <th>Sport</th>
       <th>Skill<br> Level</th>
@@ -15,6 +17,7 @@
   </thead>
   <tbody>
     <tr>
+        <td><a href="/users/<%= puser._id %>" ><%= puser.name %></td>
         <td><%= pickup.playersRequested %></td>
         <% pickup.gameRequested.forEach(function(detail) { %>
           <td><%= detail.userGame %></td>
@@ -23,15 +26,7 @@
         <% }); %>  
         <td><%= pickup.dateTimeRequested.toLocaleDateString() %><br><%= pickup.dateTimeRequested.toLocaleTimeString() %></td>
         <td><%= pickup.durationRequested %></td>
-    </tr>
-      <tr>
-        <td><%= pickup.playersRequested %></td>
-        <td>...Sport...</td>
-        <td>..skill level..</td>
-        <td>...location...</td>
-        <td><%= pickup.dateTimeRequested.toLocaleDateString() %><br><%= pickup.dateTimeRequested.toLocaleTimeString() %></td>
-        <td><%= pickup.durationRequested %></td>
-      </tr>
+        </tr>
     
     </tbody>
 </table>
