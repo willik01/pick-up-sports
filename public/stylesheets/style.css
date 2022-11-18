@@ -128,7 +128,8 @@ li {
   /* background-color: #3c648e; */
 }
 
-.styled-table thead tr {
+.styled-table thead tr, 
+#gamehead {
   /* background-color: #6c935c; */
   background-color: #3c638e;
   color: #ffffff;

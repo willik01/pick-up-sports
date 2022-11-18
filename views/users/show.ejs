@@ -9,7 +9,7 @@
   </thead>
   <tbody>
     <!-- Only show if you're the logged in user -->
-    <% if (user._id.equals(puser._id)) { %>
+    <% if (user && user._id.equals(puser._id)) { %>
 
     <tr>
       <td>email: </td>
@@ -76,15 +76,15 @@
     </tr>
     <!-- Display user's games -->
 <table class="styled-table">
-  <thead>
+  <!-- <thead>
     <tr>
       <th colspan="3">Sports</th>
     </tr>
-  </thead>
+  </thead> -->
   <tbody>
       <% if (puser.games.length) { %>
         <% puser.games.forEach(function(g) { %>
-          <tr>
+          <tr id="gamehead">
             <th colspan="2"><%= g.userGame %></th>
           </tr><tr>
             <!--  <div>Preferred Oponnent Gender:</div></div><%# user.gender %></div>  -->
@@ -105,7 +105,7 @@
 
 <!-- add user's new game -->
 <!-- pull acceptable enum values from Mongoose schema -->
-<% if (user._id.equals(puser._id)) { %>
+<% if (user && user._id.equals(puser._id)) { %>
 <% 
 const userGameEnums = puser.schema.path('games').schema.path('userGame').enumValues;
 const skillLevelEnums = puser.schema.path('games').schema.path('skillLevel').enumValues;

@@ -1,8 +1,5 @@
 <%- include('../partials/header') %>
 
-<!-- <%# console.log('**pickup to show:', pickup) %>
-<%# console.log('**user to show:', user) %>
-<%# console.log('user ', user.name, 'puser ', puser) %> -->
 <table class="styled-table">
   <thead>
     <tr>
@@ -19,6 +16,7 @@
     <tr>
         <td><a href="/users/<%= puser._id %>" ><%= puser.name %></td>
         <td><%= pickup.playersRequested %></td>
+        <!-- Dont' need a loop here... -->
         <% pickup.gameRequested.forEach(function(detail) { %>
           <td><%= detail.userGame %></td>
           <td><%= detail.skillLevel %></td>
@@ -27,10 +25,49 @@
         <td><%= pickup.dateTimeRequested.toLocaleDateString() %><br><%= pickup.dateTimeRequested.toLocaleTimeString() %></td>
         <td><%= pickup.durationRequested %></td>
         </tr>
-    
     </tbody>
 </table>
 
 
+<table class="styled-table">
+  <thead>
+    <tr class="user-block">
+      <th><img alt="avatar" src="<%= puser.avatar %>" referrerpolicy="no-referrer" ></th><th><%= puser.name %></th>
+    </tr>
+  </thead>
+  <tbody>
+
+    <tr>
+      <td>Gender: </td>
+      <td><%= puser.gender %></td>
+    </tr>
+    <tr>
+      <td>Location:</td>
+      <td><%= puser.location %></td>
+    </tr>
+    
+    <!-- Display user's games -->
+<table class="styled-table">
+  <tbody>
+      <% if (puser && puser.games.length) { %>
+        <% puser.games.forEach(function(g) { %>
+          <% console.log('g.usergame: ', g.userGame, 'pickup.gameRequested.userGame: ', pickup.gameRequested[0].userGame) %>
+          <% if (g.userGame === pickup.gameRequested[0].userGame) { %>
+            <tr id="gamehead">
+              <th colspan="2"><%= g.userGame %></th>
+            </tr><tr>
+              <!--  <div>Preferred Oponnent Gender:</div></div><%# user.gender %></div>  -->
+              <td>Skill Level</td><td><%= g.skillLevel %></td>
+            </tr><tr>
+              <td>Desired Play Location</td><td><%= g.gameLocation %></td>
+            </tr><tr>
+              <td>Years Experience</td><td><%= g.yearsExperience %></td>
+            </tr><tr>
+              <td>Competitiveness</td><td><%= g.competitiveness %></td>      
+            </tr>
+          <% } %>
+  </tbody>
+          <% }); %>
+    <% } %> 
 
 <%- include('../partials/footer') %>

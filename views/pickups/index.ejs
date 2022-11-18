@@ -16,6 +16,7 @@
     <% pickups.forEach(function(p) { %>
       <tr>
         <td><%= p.playersRequested %></td>
+
         <% p.gameRequested.forEach(function(detail) { %>
           <td><%= detail.userGame %></td>
           <td><%= detail.skillLevel %></td>
